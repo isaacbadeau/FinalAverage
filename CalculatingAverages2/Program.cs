@@ -13,7 +13,6 @@ namespace CalculatingAverages2
             {
                 Averages function = new Averages();
                 bool selectOption = true;
-
                 while (selectOption)
                 {
                     function.MainMenu();
@@ -39,7 +38,6 @@ namespace CalculatingAverages2
                 }
             }
         }
-
         public void MainMenu()
         {
             Console.WriteLine("Make a selection:");
@@ -48,7 +46,6 @@ namespace CalculatingAverages2
             Console.WriteLine("3. Grade a given amount of tests.");
             Console.WriteLine("4. Grade any number of tests.");
         }
-
         public void SumOfTen()
         {
             Averages function = new Averages();
@@ -77,8 +74,7 @@ namespace CalculatingAverages2
                 double sum = tenSum.Count();
                 Console.WriteLine("The sum of the values is {0}", sum);
                 repeatYesNo = function.ResponseYesNo();
-            }
-            
+            }  
         }
         public void TenTests()
         {
@@ -107,10 +103,8 @@ namespace CalculatingAverages2
                 }
                 calcResults.TestResult(testScores.Count(), testScores.Sum());
                 repeatYesNo = calcResults.ResponseYesNo();
-            }
-            
+            } 
         }
-
         public void RndNumber()
         {
             Averages calcResults = new Averages();
@@ -120,7 +114,6 @@ namespace CalculatingAverages2
                 Console.WriteLine("How many tests need to be graded?");
                 double number = Convert.ToDouble(Console.ReadLine());
                 List<double> testScores = new List<double>();
-
                 while (testScores.Count() < number)
                 {
                     try
@@ -143,7 +136,6 @@ namespace CalculatingAverages2
                 repeatYesNo = calcResults.ResponseYesNo();
             }  
         }
-
         public void UnknowNumber()
         {
             Averages function = new Averages();
@@ -174,9 +166,7 @@ namespace CalculatingAverages2
                 function.UnknowTestResult(totals.Count(), totals.Sum());
                 repeatYesNo = function.ResponseYesNo();
             }
-            
         }
-
         public bool AnotherGrade()
         {
             while (true)
