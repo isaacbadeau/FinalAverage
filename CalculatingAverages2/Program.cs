@@ -53,7 +53,7 @@ namespace CalculatingAverages2
             while(repeatYesNo)
             {
                 List<double> tenSum = new List<double>();
-                while (tenSum.Count() < 9)
+                while (tenSum.Count() < 10)
                 {
                     try
                     {
@@ -71,7 +71,7 @@ namespace CalculatingAverages2
                         Console.WriteLine("Numbers only");
                     }
                 }
-                double sum = tenSum.Count();
+                double sum = tenSum.Sum();
                 Console.WriteLine("The sum of the values is {0}", sum);
                 repeatYesNo = function.ResponseYesNo();
             }  
