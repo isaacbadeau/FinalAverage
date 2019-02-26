@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CalculatingAverages2
 {
-    class Averages
+    public class Averages
     {
         static void Main(string[] args)
         {
@@ -20,16 +20,24 @@ namespace CalculatingAverages2
                     switch (response)
                     {
                         case "1":
+                            Console.Clear();
                             function.SumOfTen();
                             break;
                         case "2":
+                            Console.Clear();
                             function.TenTests();
                             break;
                         case "3":
+                            Console.Clear();
                             function.RndNumber();
                             break;
                         case "4":
+                            Console.Clear();
                             function.UnknowNumber();
+                            break;
+                        case "5":
+                            Console.Clear();
+                            selectOption = false;
                             break;
                         default:
                             Console.WriteLine("Invalid selection.");
@@ -45,6 +53,8 @@ namespace CalculatingAverages2
             Console.WriteLine("2. Grade 10 tests.");
             Console.WriteLine("3. Grade a given amount of tests.");
             Console.WriteLine("4. Grade any number of tests.");
+            Console.WriteLine("5. Quit.");
+            Console.Write("Selection:  ");
         }
         public void SumOfTen()
         {
@@ -52,12 +62,13 @@ namespace CalculatingAverages2
             bool repeatYesNo = true;
             while(repeatYesNo)
             {
+                
                 List<double> tenSum = new List<double>();
                 while (tenSum.Count() < 10)
                 {
                     try
                     {
-                        Console.Write("Enter value: ");
+                        Console.Write("Enter sum #{0}: ", tenSum.Count()+1);
                         var grade = Convert.ToDouble(Console.ReadLine());
                         if (grade < 0 || grade > 100)
                         {
@@ -83,11 +94,11 @@ namespace CalculatingAverages2
             while(repeatYesNo)
             {
                 List<double> testScores = new List<double>();
-                while (testScores.Count() < 9)
+                while (testScores.Count() < 10)
                 {
                     try
                     {
-                        Console.Write("Enter grade: ");
+                        Console.Write("Enter grade #{0}: ", testScores.Count()+1);
                         var grade = Convert.ToDouble(Console.ReadLine());
                         if (grade < 0 || grade > 100)
                         {
@@ -111,15 +122,16 @@ namespace CalculatingAverages2
             bool repeatYesNo = true;
             while(repeatYesNo)
             {
-                Console.WriteLine("How many tests need to be graded?");
+                Console.Write("How many tests need to be graded? ");
                 double number = Convert.ToDouble(Console.ReadLine());
                 List<double> testScores = new List<double>();
                 while (testScores.Count() < number)
                 {
                     try
                     {
-                        Console.Write("Enter grade: ");
+                        Console.Write("Enter grade #{0}: ", testScores.Count()+1);
                         var grade = Convert.ToDouble(Console.ReadLine());
+                        Console.Clear();
                         if (grade < 0 || grade > 100)
                         {
                             Console.WriteLine("Invalid entry.");
@@ -148,7 +160,7 @@ namespace CalculatingAverages2
                 {
                     try
                     {
-                        Console.Write("Enter grade: ");
+                        Console.Write("Enter grade #{0}: ", totals.Count()+1);
                         var grade = Convert.ToDouble(Console.ReadLine());
                         if (grade < 0 || grade > 100)
                         {
@@ -176,8 +188,10 @@ namespace CalculatingAverages2
                 switch (response.ToLower())
                 {
                     case "yes":
+                        Console.Clear();
                         return true;
                     case "y":
+                        Console.Clear();
                         return true;
                     case "no":
                         return false;
@@ -187,6 +201,7 @@ namespace CalculatingAverages2
                         Console.WriteLine("Invalid Entry.");
                         break;
                 }
+                
             }
         }
         public double TestResult(double value1, double value2 )
@@ -220,12 +235,16 @@ namespace CalculatingAverages2
                 switch (response.ToLower())
                 {
                     case "yes":
+                        Console.Clear();
                         return true;
                     case "y":
+                        Console.Clear();
                         return true;
                     case "no":
+                        Console.Clear();
                         return false;
                     case "n":
+                        Console.Clear();
                         return false;
                     default:
                         Console.WriteLine("Invalid Entry.");
