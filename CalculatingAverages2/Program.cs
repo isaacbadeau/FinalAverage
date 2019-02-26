@@ -62,7 +62,6 @@ namespace CalculatingAverages2
             bool repeatYesNo = true;
             while(repeatYesNo)
             {
-                
                 List<double> tenSum = new List<double>();
                 while (tenSum.Count() < 10)
                 {
