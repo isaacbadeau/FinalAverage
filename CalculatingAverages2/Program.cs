@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+//I could have used a list.Average() but using the Sum()/Count() allowed me to play with using
+//a list method with multiple parameters.
 namespace CalculatingAverages2
 {
     public class Averages
@@ -46,6 +48,7 @@ namespace CalculatingAverages2
                 }
             }
         }
+
         public void MainMenu()
         {
             Console.WriteLine("Make a selection:");
@@ -56,6 +59,7 @@ namespace CalculatingAverages2
             Console.WriteLine("5. Quit.");
             Console.Write("Selection:  ");
         }
+
         public void SumOfTen()
         {
             Averages function = new Averages();
@@ -86,6 +90,7 @@ namespace CalculatingAverages2
                 repeatYesNo = function.ResponseYesNo();
             }  
         }
+
         public void TenTests()
         {
             Averages calcResults = new Averages();
@@ -111,10 +116,11 @@ namespace CalculatingAverages2
                         Console.WriteLine("Numbers only");
                     }
                 }
-                calcResults.TestResult(testScores.Count(), testScores.Sum());
+                calcResults.TestResults(testScores.Count(), testScores.Sum());
                 repeatYesNo = calcResults.ResponseYesNo();
             } 
         }
+
         public void RndNumber()
         {
             Averages calcResults = new Averages();
@@ -143,10 +149,12 @@ namespace CalculatingAverages2
                         Console.WriteLine("Numbers only");
                     }
                 }
-                calcResults.TestResult(testScores.Count(), testScores.Sum());
+                calcResults.TestResults(testScores.Count(), testScores.Sum());
+                calcResults.ReviewGrades(testScores);
                 repeatYesNo = calcResults.ResponseYesNo();
             }  
         }
+
         public void UnknowNumber()
         {
             Averages function = new Averages();
@@ -159,25 +167,33 @@ namespace CalculatingAverages2
                 {
                     try
                     {
-                        Console.Write("Enter grade #{0}: ", totals.Count()+1);
-                        var grade = Convert.ToDouble(Console.ReadLine());
-                        if (grade < 0 || grade > 100)
+                        Console.Write("Enter grade #{0} (Type quit to end): ", totals.Count() + 1);
+                        string grade = Console.ReadLine().ToLower();
+                        if (grade == "quit")
                         {
-                            Console.WriteLine("Invalid entry.");
+                            test = false;
+                        }
+                        else if (Convert.ToDouble(grade) < 0 || Convert.ToDouble(grade) > 100)
+                        {
+                            Console.WriteLine("Invalid");
                         }
                         else
-                            totals.Add(grade);
+                        {
+                            totals.Add(Convert.ToDouble(grade));
+                            Console.Clear();
+                        }       
                     }
                     catch (System.FormatException)
                     {
                         Console.WriteLine("Invalid entry.");
                     }
-                    test = function.AnotherGrade();
                 }
-                function.UnknowTestResult(totals.Count(), totals.Sum());
+                function.TestResults(totals.Count(), totals.Sum());
+                function.ReviewGrades(totals);
                 repeatYesNo = function.ResponseYesNo();
             }
         }
+
         public bool AnotherGrade()
         {
             while (true)
@@ -199,18 +215,11 @@ namespace CalculatingAverages2
                     default:
                         Console.WriteLine("Invalid Entry.");
                         break;
-                }
-                
+                }  
             }
         }
-        public double TestResult(double value1, double value2 )
-        {
-            double testTotal = value1;
-            double testAverage = Math.Round(value2 / value1, 2);
-            Console.WriteLine("Class average: {0}", testAverage);
-            return Math.Round(testAverage, 2); 
-        }
-        public double UnknowTestResult(double value1, double value2)
+
+        public double TestResults(double value1, double value2)
         {
             double testTotal = value1;
             double testAverage = Math.Round(value2 / value1, 2);
@@ -225,11 +234,12 @@ namespace CalculatingAverages2
                 Console.WriteLine("Class average is an A.");
             return Math.Round(testAverage, 2);
         }
+
         public bool ResponseYesNo()
         {
             while (true)
             {
-                Console.Write("Grade another set? ");
+                Console.Write("Evaluate another set? ");
                 string response = Console.ReadLine();
                 switch (response.ToLower())
                 {
@@ -250,6 +260,40 @@ namespace CalculatingAverages2
                         break;
                 }
             }
+        }
+
+        public bool ReviewGrades(List<double> value1)
+        {
+            while(true)
+            {
+                Console.Write("Would you like to review your grades? ");
+                string response = Console.ReadLine().ToLower();
+                switch (response)
+                {
+                    case "yes":
+                        int x = 0;
+                        for (x = 0; x < value1.Count; x++)
+                        {
+                            Console.WriteLine($"{x + 1}: {value1[x]}");
+                        }
+                        return true;
+                    case "y":
+                        for (x = 0; x < value1.Count; x++)
+                        {
+                            Console.WriteLine($"{x + 1}: {value1[x]}");
+                        }
+                        return true;
+                    case "no":
+                        return false;
+                    case "n":
+                        return false;
+                    default:
+                        Console.WriteLine("Invalid.");
+                        break;
+                }
+            
+            }
+
         }
     }
 }
